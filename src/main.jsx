@@ -23,7 +23,7 @@ import Root, {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path="/"
+      path="/React-Router-Tutorial/"
       element={<Root />}
       loader={rootLoader}
       action={rootAction}
@@ -32,18 +32,21 @@ const router = createBrowserRouter(
       <Route errorElement={<ErrorPage />}>
         <Route index element={<Index />} />
         <Route
-          path="contacts/:contactId"
+          path="/React-Router-Tutorial/contacts/:contactId"
           element={<Contact />}
           loader={contactLoader}
           action={contactAction}
         />
         <Route
-          path="contacts/:contactId/edit"
+          path="/React-Router-Tutorial/contacts/:contactId/edit"
           element={<EditContact />}
           loader={contactLoader}
           action={editAction}
         />
-        <Route path="contacts/:contactId/destroy" action={destroyAction} />
+        <Route
+          path="/React-Router-Tutorial/contacts/:contactId/destroy"
+          action={destroyAction}
+        />
       </Route>
     </Route>
   )
