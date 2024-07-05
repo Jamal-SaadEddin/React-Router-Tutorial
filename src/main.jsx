@@ -23,7 +23,7 @@ import Root, {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path="/"
+      path="/React-Router-Tutorial/"
       element={<Root />}
       loader={rootLoader}
       action={rootAction}
