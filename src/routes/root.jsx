@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Form,
   NavLink,
@@ -15,14 +16,19 @@ export async function action() {
 
 export async function loader({ request }) {
   const url = new URL(request.url);
-  const q = url.searchParams.get("q");
+  const q = url.searchParams.get("q") || "";
   const contacts = await getContacts(q);
-  return { contacts };
+  return { contacts, q };
 }
 
 export default function Root() {
-  const { contacts } = useLoaderData();
+  const { contacts, q } = useLoaderData();
+  const [query, setQuery] = useState(q);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    setQuery(q);
+  }, [q]);
 
   return (
     <>
@@ -36,6 +42,10 @@ export default function Root() {
               placeholder="Search"
               type="search"
               name="q"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
             />
             <div id="search-spinner" aria-hidden hidden={true} />
             <div className="sr-only" aria-live="polite"></div>
